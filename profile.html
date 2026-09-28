@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schucker | Profile</title>
+    <meta name="description" content="Schucker personal profile" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #07111d;
+        --bg-2: #0f1d2f;
+        --panel: rgba(17, 26, 40, 0.8);
+        --panel-strong: rgba(15, 22, 33, 0.96);
+        --line: rgba(255,255,255,0.08);
+        --text: #edf4ff;
+        --muted: #b0bfd9;
+        --primary: #7ca9ff;
+        --secondary: #74f0d4;
+        --accent: #ffbf8a;
+        --shadow: 0 18px 55px rgba(0,0,0,0.28);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(124,169,255,0.18), transparent 24%),
+          radial-gradient(circle at 100% 10%, rgba(116,240,212,0.12), transparent 18%),
+          linear-gradient(180deg, var(--bg) 0%, #0a1524 100%);
+        line-height: 1.7;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        backdrop-filter: blur(16px);
+        background: rgba(7,17,29,0.62);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+      }
+
+      .brand {
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 26px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover { color: var(--text); }
+      .nav-links a.active { color: var(--text); }
+
+      .nav-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 42px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(124,169,255,0.28);
+        background: rgba(124,169,255,0.08);
+        font-weight: 600;
+      }
+
+      .hero {
+        padding: 60px 0 30px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .avatar-box {
+        position: relative;
+        width: 100%;
+        min-height: 240px;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 30% 22%, rgba(124,169,255,0.4), transparent 24%),
+          linear-gradient(135deg, #172239 0%, #101827 50%, #0a1324 100%);
+        border: 1px solid rgba(255,255,255,0.06);
+        box-shadow: var(--shadow);
+      }
+
+      .avatar-box::before {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        top: 52px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #eef5ff, #a5c4ff);
+        box-shadow: 0 18px 38px rgba(124,169,255,0.25);
+      }
+
+      .avatar-box::after {
+        content: "";
+        position: absolute;
+        width: 150px;
+        height: 100px;
+        left: 50%;
+        bottom: 16px;
+        transform: translateX(-50%);
+        border-radius: 50% 50% 26% 26%;
+        background: linear-gradient(180deg, #111f30, #0d1729);
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .hero-copy h1 {
+        margin: 0;
+        font-size: clamp(2.1rem, 4vw, 4.2rem);
+        line-height: 1.02;
+        letter-spacing: -0.06em;
+      }
+
+      .gradient {
+        background: linear-gradient(135deg, #fff 0%, #dce9ff 16%, #97f0d8 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        margin: 14px 0 0;
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 20px;
+        border-radius: 12px;
+        font-weight: 600;
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, var(--primary), #a9c6ff);
+        color: #06111d;
+      }
+
+      .button.secondary {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      section {
+        padding: 28px 0 36px;
+      }
+
+      .section-head {
+        margin-bottom: 20px;
+      }
+
+      .section-head h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        letter-spacing: -0.06em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .card h3 {
+        margin: 0 0 14px;
+        font-size: 1.3rem;
+      }
+
+      .card p { margin: 0; color: var(--muted); }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 18px;
+      }
+
+      .skill-group h4 {
+        margin: 0 0 12px;
+        font-size: 1rem;
+      }
+
+      .skill-items { display: flex; flex-wrap: wrap; gap: 10px; }
+
+      .skill-item {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(124,169,255,0.08);
+        border: 1px solid rgba(124,169,255,0.18);
+        color: #ddeaff;
+        font-size: 0.84rem;
+      }
+
+      .exp-list { display: grid; gap: 18px; }
+
+      .exp-item {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 20px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px 20px;
+      }
+
+      .exp-period {
+        color: var(--muted);
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding-top: 4px;
+      }
+
+      .exp-content h4 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+      }
+
+      .exp-content p {
+        margin: 0 0 10px;
+        color: var(--muted);
+      }
+
+      .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(116,240,212,0.08);
+        border: 1px solid rgba(116,240,212,0.12);
+        color: #ccfff6;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 18px;
+      }
+
+      .project-card {
+        background: linear-gradient(180deg, rgba(18,24,39,0.92), rgba(12,17,29,0.9));
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .project-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.24rem;
+      }
+
+      .project-card p { margin: 0 0 16px; color: var(--muted); }
+
+      .project-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #ebf0ff;
+        font-size: 0.82rem;
+      }
+
+      .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--secondary);
+        margin-right: 8px;
+        box-shadow: 0 0 12px rgba(116,240,212,0.7);
+      }
+
+      .contact-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .contact-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      footer {
+        padding: 30px 0 80px;
+      }
+
+      .footer-box {
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner,
+        .grid-2,
+        .skills-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .exp-item { grid-template-columns: 1fr; }
+        .nav-links { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">Schucker</div>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="/" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+        </nav>
+        <a class="nav-btn" href="#contact">Contact Me</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="avatar-box"></div>
+          <div class="hero-copy">
+            <h1>
+              <span class="gradient">Schucker</span>
+            </h1>
+            <div class="subtitle">
+              Software engineer focused on building reliable products, thoughtful interfaces, and systems that scale with clarity and purpose.
+            </div>
+            <div class="hero-actions">
+              <a class="button primary" href="https://github.com/EVO85Y" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="button secondary" href="mailto:lei8641.zhang@wbstar.com">Email</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-head">
+            <h2>About Me</h2>
+            <p>Engineer. Builder. Problem-solver.</p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3>Who I Am</h3>
+              <p>
+                I’m an engineer with a strong interest in software design, user experience, and building useful digital products that stand the test of time.
+              </p>
+            </div>
+            <div class="card">
+              <h3>What I Care About</h3>
+              <p>
+                I care about clean architecture, maintainable code, intuitive interfaces, and impactful engineering decisions that make products better for real users.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <h2>Skills</h2>
+            <p>Technologies and areas I work in</p>
+          </div>
+
+          <div class="card">
+            <div class="skills-grid">
+              <div class="skill-group">
+                <h4>Frontend</h4>
+                <div class="skill-items">
+                  <span class="skill-item">JavaScript</span>
+                  <span class="skill-item">TypeScript</span>
+                  <span class="skill-item">React</span>
+                  <span class="skill-item">HTML</span>
+                  <span class="skill-item">CSS</span>
+                  <span class="skill-item">UI / UX</span>
+                </div>
+              </div>
+
+              <div class="skill-group">
+                <h4>Backend</h4>
+                <div class="skill-items">
+                  <span class="skill-item">Node.js</span>
+                  <span class="skill-item">API Design</span>
+                  <span class="skill-item">System Design</span>
+                  <span class="skill-item">Database</span>
+                  <span class="skill-item">REST</span>
+                  <span class="skill-item">Architecture</span>
+                </div>
+              </div>
+
+              <div class="skill-group">
+                <h4>Workflow</h4>
+                <div class="skill-items">
+                  <span class="skill-item">Git</span>
+                  <span class="skill-item">GitHub</span>
+                  <span class="skill-item">CI / CD</span>
+                  <span class="skill-item">Testing</span>
+                  <span class="skill-item">Debugging</span>
+                  <span class="skill-item">Documentation</span>
+                </div>
+              </div>
+
+              <div class="skill-group">
+                <h4>Design</h4>
+                <div class="skill-items">
+                  <span class="skill-item">Figma</span>
+                  <span class="skill-item">Prototyping</span>
+                  <span class="skill-item">Design Systems</span>
+                  <span class="skill-item">Accessibility</span>
+                  <span class="skill-item">UX Thinking</span>
+                  <span class="skill-item">Product Thinking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="container">
+          <div class="section-head">
+            <h2>Experience</h2>
+            <p>Technology and product-focused roles</p>
+          </div>
+
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-period">2023 — Now</div>
+              <div class="exp-content">
+                <h4>Engineer</h4>
+                <p>Building reliable digital products and systems with a focus on maintainability, user experience, and delivery speed.</p>
+                <div class="exp-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Node.js</span>
+                  <span class="tag">System Design</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-period">2021 — 2023</div>
+              <div class="exp-content">
+                <h4>Frontend Engineer</h4>
+                <p>Delivered user-facing web experiences, reusable components, and optimized interfaces across multiple product initiatives.</p>
+                <div class="exp-tags">
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">UI</span>
+                  <span class="tag">Design Systems</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-period">2019 — 2021</div>
+              <div class="exp-content">
+                <h4>Developer</h4>
+                <p>Built web applications and tools, translating business needs into practical software solutions.</p>
+                <div class="exp-tags">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">API</span>
+                  <span class="tag">Full Stack</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <div class="section-head">
+            <h2>Featured Projects</h2>
+            <p>Examples of product and engineering work</p>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <h3>Analytics Dashboard</h3>
+              <p>Built a real-time analytics dashboard with clean reporting views for product and performance insights.</p>
+              <div class="project-meta">
+                <span><span class="dot"></span>React</span>
+                <strong>2024</strong>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Workflow Platform</h3>
+              <p>Created a streamlined internal platform that improved visibility and reduced repetitive operational tasks.</p>
+              <div class="project-meta">
+                <span><span class="dot"></span>Node.js</span>
+                <strong>2024</strong>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Design System</h3>
+              <p>Established reusable UI patterns and strong front-end conventions to keep product experiences consistent.</p>
+              <div class="project-meta">
+                <span><span class="dot"></span>UI / UX</span>
+                <strong>2023</strong>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>E-commerce Flow</h3>
+              <p>Built a full-stack commerce experience with product management, cart logic, and customer-facing pages.</p>
+              <div class="project-meta">
+                <span><span class="dot"></span>Next.js</span>
+                <strong>2023</strong>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact</h2>
+            <p>Open to interesting projects and collaborations</p>
+          </div>
+
+          <div class="contact-box">
+            <p>
+              I’m interested in product engineering, front-end work, and meaningful collaborations where code can make a real difference.
+            </p>
+            <div class="contact-row">
+              <a class="button primary" href="mailto:lei8641.zhang@wbstar.com">Email Me</a>
+              <a class="button secondary" href="https://github.com/EVO85Y" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-box">
+        <div>© 2025 Schucker</div>
+        <div>
+          <a href="mailto:lei8641.zhang@wbstar.com">lei8641.zhang@wbstar.com</a> ·
+          <a href="https://github.com/EVO85Y" target="_blank" rel="noreferrer">GitHub</a> ·
+          <a href="/">Home</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
